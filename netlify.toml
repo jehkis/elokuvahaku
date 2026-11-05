@@ -1,0 +1,7 @@
+# Netlify-julkaisun asetukset.
+# Sivusto on pelkkää HTML/CSS/JS:ää, joten varsinaista käännöstä ei ole. Julkaisun yhteydessä
+# luodaan kuitenkin js/config.js Netlifyn ympäristömuuttujasta TMDB_API_KEY, jotta API-avain
+# ei ole GitHub-repossa. Muuttuja asetetaan: Site configuration → Environment variables.
+[build]
+  publish = "."
+  command = "printf 'const TMDB_API_KEY = \"%s\";\\n' \"$TMDB_API_KEY\" > js/config.js"

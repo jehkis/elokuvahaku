@@ -9,6 +9,10 @@ const API_OSOITE = "https://api.themoviedb.org/3";
 const KUVA_OSOITE = "https://image.tmdb.org/t/p/";
 const KIELI = "fi-FI"; // suomenkieliset nimet ja kuvaukset, kun niitä on
 
+// API-avain tulee tiedostosta js/config.js. Jos tiedosto puuttuu, avain on tyhjä
+// ja haku antaa selkeän virheilmoituksen (401) kaatumisen sijaan.
+const API_AVAIN = typeof TMDB_API_KEY !== "undefined" ? TMDB_API_KEY : "";
+
 // Listavalikon arvot ja niiden otsikot sivulla.
 const LISTAT = {
     popular: "Suosituimmat",
@@ -49,7 +53,7 @@ const genret = {};
 // parametrit = olio, josta tehdään osoitteen kyselyosa (?query=...&page=...).
 async function haeApista(polku, parametrit = {}) {
     // URLSearchParams muodostaa kyselyosan ja koodaa erikoismerkit (esim. välilyönnit).
-    const kysely = new URLSearchParams({ api_key: TMDB_API_KEY, language: KIELI, ...parametrit });
+    const kysely = new URLSearchParams({ api_key: API_AVAIN, language: KIELI, ...parametrit });
     const vastaus = await fetch(`${API_OSOITE}${polku}?${kysely}`);
 
     // fetch ei heitä virhettä HTTP-virhekoodeista, joten tarkistetaan tila itse.
