@@ -6,7 +6,7 @@ Web Development 1 -kurssin Projekti 2a: AJAX-sovellus, joka hakee dataa eläväs
 
 ## Linkit
 
-- **Julkaistu sovellus:** TODO: lisää Netlify-osoite
+- **Julkaistu sovellus:** https://dulcet-gingersnap-35b21e.netlify.app/
 - **GitHub-repositorio:** https://github.com/jehkis/elokuvahaku
 - **Esittelyvideo:** TODO: lisää videon linkki
 
