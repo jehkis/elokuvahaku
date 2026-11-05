@@ -1,0 +1,417 @@
+/* =========================================================
+   Elokuvahaku – tumma elokuvateema
+   ========================================================= */
+
+/* Värit ja mitat muuttujina, jotta niitä on helppo muuttaa yhdestä paikasta. */
+:root {
+    --tausta: #0d0f14;
+    --pinta: #171a22;
+    --pinta-2: #1f2430;
+    --reuna: #2a3040;
+    --teksti: #e8eaf0;
+    --himmea: #9aa3b5;
+    --korostus: #e50914;
+    --korostus-hover: #ff2a35;
+    --hyva: #21c065;
+    --keski: #e6b422;
+    --heikko: #e5484d;
+    --pyoristys: 12px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    background: var(--tausta);
+    color: var(--teksti);
+    line-height: 1.5;
+}
+
+/* ---------- Yläpalkki ---------- */
+
+.ylapalkki {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px clamp(16px, 4vw, 48px);
+    background: rgba(13, 15, 20, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--reuna);
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--teksti);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+}
+
+.logo span {
+    color: var(--korostus);
+}
+
+.haku {
+    display: flex;
+    flex: 1;
+    max-width: 480px;
+    min-width: 240px;
+}
+
+.haku input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 14px;
+    font: inherit;
+    color: var(--teksti);
+    background: var(--pinta-2);
+    border: 1px solid var(--reuna);
+    border-right: none;
+    border-radius: var(--pyoristys) 0 0 var(--pyoristys);
+}
+
+.haku button,
+.lisaa {
+    padding: 10px 18px;
+    font: inherit;
+    font-weight: 700;
+    color: #fff;
+    background: var(--korostus);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.haku button {
+    border-radius: 0 var(--pyoristys) var(--pyoristys) 0;
+}
+
+.haku button:hover,
+.lisaa:hover {
+    background: var(--korostus-hover);
+}
+
+/* ---------- Suodattimet ---------- */
+
+.suodattimet {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 20px clamp(16px, 4vw, 48px) 0;
+}
+
+.suodattimet label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--himmea);
+    font-size: 0.9rem;
+}
+
+.suodattimet select {
+    padding: 8px 12px;
+    font: inherit;
+    color: var(--teksti);
+    background: var(--pinta-2);
+    border: 1px solid var(--reuna);
+    border-radius: var(--pyoristys);
+    cursor: pointer;
+}
+
+input:focus-visible,
+select:focus-visible,
+button:focus-visible,
+.kortti:focus-visible {
+    outline: 2px solid var(--korostus);
+    outline-offset: 2px;
+}
+
+/* ---------- Pääsisältö ---------- */
+
+main {
+    padding: 8px clamp(16px, 4vw, 48px) 48px;
+}
+
+.osion-otsikko {
+    font-size: 1.6rem;
+    margin: 16px 0;
+}
+
+.tila {
+    color: var(--himmea);
+}
+
+.tila:empty {
+    display: none;
+}
+
+.tila.virhe {
+    color: var(--heikko);
+}
+
+/* Julisteruudukko: sarakkeita mahtuu niin monta kuin leveys sallii. */
+.ruudukko {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 20px;
+}
+
+.kortti {
+    position: relative;
+    overflow: hidden;
+    background: var(--pinta);
+    border-radius: var(--pyoristys);
+    cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.kortti:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6);
+}
+
+.juliste {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    background: var(--pinta-2);
+}
+
+.ei-julistetta {
+    display: grid;
+    place-items: center;
+    font-size: 3rem;
+}
+
+.kortti-teksti {
+    padding: 10px 12px 14px;
+}
+
+.kortti h2 {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.3;
+}
+
+.kortti p {
+    margin: 4px 0 0;
+    font-size: 0.8rem;
+    color: var(--himmea);
+}
+
+/* Arvosanamerkki kortin kulmassa. */
+.arvosana {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.kortti .arvosana {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+
+.arvosana.hyva { color: var(--hyva); }
+.arvosana.keski { color: var(--keski); }
+.arvosana.heikko { color: var(--heikko); }
+
+.lisaa {
+    display: block;
+    margin: 32px auto 0;
+    border-radius: var(--pyoristys);
+}
+
+/* ---------- Tiedot-ikkuna ---------- */
+
+.tiedot {
+    width: min(900px, calc(100% - 32px));
+    max-height: calc(100vh - 48px);
+    padding: 0;
+    color: var(--teksti);
+    background: var(--pinta);
+    border: 1px solid var(--reuna);
+    border-radius: 16px;
+    overflow-y: auto;
+}
+
+.tiedot::backdrop {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+}
+
+.sulje {
+    position: sticky;
+    top: 12px;
+    float: right;
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    margin: 12px 12px 0 0;
+    font-size: 1rem;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--reuna);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Taustakuva haalistuu alaspäin ikkunan taustaväriin. */
+.tiedot-tausta {
+    height: 220px;
+    background-size: cover;
+    background-position: center top;
+    mask-image: linear-gradient(to bottom, #000 30%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent);
+}
+
+.tiedot-runko {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 24px;
+    margin-top: -120px;
+    padding: 0 24px;
+    position: relative;
+}
+
+.tiedot-runko .juliste {
+    border-radius: var(--pyoristys);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+}
+
+.tiedot h2 {
+    margin: 100px 0 4px;
+    font-size: 1.6rem;
+    line-height: 1.2;
+}
+
+.tiedot h2 span {
+    color: var(--himmea);
+    font-weight: 500;
+}
+
+.iskulause {
+    margin: 0 0 8px;
+    font-style: italic;
+    color: var(--himmea);
+}
+
+.meta {
+    color: var(--himmea);
+}
+
+.meta .arvosana {
+    margin-right: 6px;
+    background: var(--pinta-2);
+}
+
+.juoni {
+    margin-top: 12px;
+}
+
+.tiedot h3 {
+    margin: 28px 24px 12px;
+}
+
+.nayttelijat {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 14px;
+    margin: 0;
+    padding: 0 24px;
+    list-style: none;
+}
+
+.nayttelijat img,
+.nayttelijat .ei-kuvaa {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 8px;
+    background: var(--pinta-2);
+}
+
+.nayttelijat .ei-kuvaa {
+    display: grid;
+    place-items: center;
+    font-size: 2rem;
+    color: var(--himmea);
+}
+
+.nayttelijat strong,
+.nayttelijat span {
+    display: block;
+    font-size: 0.8rem;
+    line-height: 1.3;
+    margin-top: 4px;
+}
+
+.nayttelijat span {
+    color: var(--himmea);
+}
+
+.traileri {
+    margin: 0 24px 24px;
+    aspect-ratio: 16 / 9;
+}
+
+.traileri iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: var(--pyoristys);
+}
+
+/* ---------- Alapalkki ---------- */
+
+.alapalkki {
+    padding: 24px clamp(16px, 4vw, 48px);
+    border-top: 1px solid var(--reuna);
+    color: var(--himmea);
+    font-size: 0.8rem;
+}
+
+/* ---------- Kapeat näytöt (puhelin) ---------- */
+
+@media (max-width: 600px) {
+    .ruudukko {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 14px;
+    }
+
+    .tiedot-runko {
+        grid-template-columns: 1fr;
+        margin-top: -80px;
+    }
+
+    .tiedot-runko .juliste {
+        width: 140px;
+    }
+
+    .tiedot h2 {
+        margin-top: 8px;
+    }
+}
+
+/* Vähemmän liikettä, jos käyttäjä on pyytänyt sitä käyttöjärjestelmästä. */
+@media (prefers-reduced-motion: reduce) {
+    .kortti {
+        transition: none;
+    }
+
+    .kortti:hover {
+        transform: none;
+    }
+}

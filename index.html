@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elokuvahaku</title>
+    <meta name="description" content="Selaa ja hae elokuvia The Movie Databasesta (TMDB).">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- config.js sisältää TMDB-API-avaimen, app.js sovelluksen logiikan. defer = ajetaan, kun HTML on luettu. -->
+    <script src="js/config.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <header class="ylapalkki">
+        <a class="logo" href="./" aria-label="Elokuvahaku, etusivu">🎬 Elokuva<span>haku</span></a>
+
+        <!-- Hakulomake: vapaa hakusana. Tapahtumankäsittelijä lisätään app.js:ssä. -->
+        <form id="hakulomake" class="haku" role="search">
+            <input id="hakukentta" type="search" placeholder="Hae elokuvaa nimellä…" autocomplete="off"
+                aria-label="Hae elokuvaa nimellä">
+            <button type="submit">Hae</button>
+        </form>
+    </header>
+
+    <!-- Suodattimet: valmis lista tai genre. Genret haetaan API:sta sivun latautuessa. -->
+    <section class="suodattimet" aria-label="Suodattimet">
+        <label>
+            Lista
+            <select id="listavalikko">
+                <option value="popular">Suosituimmat</option>
+                <option value="top_rated">Parhaiten arvioidut</option>
+                <option value="now_playing">Teattereissa nyt</option>
+                <option value="upcoming">Tulossa</option>
+            </select>
+        </label>
+        <label>
+            Genre
+            <select id="genrevalikko">
+                <option value="">Kaikki genret</option>
+            </select>
+        </label>
+    </section>
+
+    <main>
+        <h1 id="otsikko" class="osion-otsikko">Suosituimmat</h1>
+        <!-- Tilaviestit (lataus, virhe, ei tuloksia) näytetään tässä. -->
+        <p id="tila" class="tila" aria-live="polite"></p>
+        <!-- Elokuvakortit lisätään tähän JavaScriptillä. -->
+        <div id="elokuvat" class="ruudukko"></div>
+        <button id="lisaa" class="lisaa" type="button" hidden>Näytä lisää</button>
+    </main>
+
+    <!-- Elokuvan tiedot -ikkuna (dialog-elementti). Sisältö täytetään, kun korttia klikataan. -->
+    <dialog id="tiedot" class="tiedot" aria-labelledby="tiedot-otsikko">
+        <button id="sulje" class="sulje" type="button" aria-label="Sulje">✕</button>
+        <div id="tiedot-sisalto"></div>
+    </dialog>
+
+    <footer class="alapalkki">
+        <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+            alt="TMDB" width="90" height="12">
+        <p>Tämä sovellus käyttää TMDB:n rajapintaa, mutta TMDB ei ole hyväksynyt tai sertifioinut sitä.</p>
+    </footer>
+</body>
+
+</html>
