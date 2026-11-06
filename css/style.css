@@ -234,6 +234,11 @@ main {
     border-radius: var(--pyoristys);
 }
 
+/* display: block ohittaisi hidden-attribuutin, joten piilotus pitää sanoa erikseen. */
+.lisaa[hidden] {
+    display: none;
+}
+
 /* ---------- Tiedot-ikkuna ---------- */
 
 .tiedot {
