@@ -120,14 +120,17 @@ API-avainta ei ole repossa. Netlify luo `js/config.js`-tiedoston julkaisun yhtey
 
 ## Itsearviointi ja oppimispohdinta
 
-TODO (Joona kirjoittaa omin sanoin):
+**Mikä onnistui?** Olen tyytyväinen projektin visuaaliseen ulkonäköön sekä siihen, että se hakee elokuvien tiedot laajasti.
 
-- Mikä onnistui?
-- Mikä oli haastavaa?
-- Mitä parantaisin, jos aikaa olisi enemmän?
-- Mitä opin AJAXista, REST API:sta, JavaScriptistä ja DOM-käsittelystä?
-- Mikä jäi epäselväksi tai mistä haluaisin oppia lisää?
-- Itsearvioitu arvosana: **xx/10**
+**Mikä oli haastavaa?** API-avaimen piilottaminen Netlifyyn oli haastavinta.
+
+**Mitä parantaisin?** Lisäisin suosikkilistan ja hakuhistorian.
+
+**Mitä opin?** API:n kanssa tekeminen on avannut minulle monia uusia ulottuvuuksia omiin projekteihin. Opin, että API:n hyödyntäminen oikeasti helpottaa tietojen välittymistä palvelusta toiseen.
+
+**Mistä haluaisin oppia lisää?** async/await ja Promiset, Netlifyn build ja ympäristömuuttujat, oma backend API-avaimen piilottamiseen, React sekä koodin kirjoittaminen itse ilman tekoälyä.
+
+**Itsearvioitu arvosana: 8/10.** Kaikki vaatimukset täyttyvät ja vähän ylikin.
 
 ## Lähteet ja tekoälyn käyttö
 
@@ -137,7 +140,7 @@ TODO (Joona kirjoittaa omin sanoin):
 - Elokuvien tiedot ja kuvat: [The Movie Database (TMDB)](https://www.themoviedb.org/). *Tämä sovellus käyttää TMDB:n rajapintaa, mutta TMDB ei ole hyväksynyt tai sertifioinut sitä.*
 - **Tekoäly:** Claude Code (Anthropic)
   - **Minun päätökseni:** rajapinnaksi TMDB, toiminnot (hakukenttä, listavalikko, genresuodatus, elokuvan tiedot -ikkuna), suomenkielinen sisältö, tumma elokuvateema. Loin TMDB-tilin ja API-avaimen itse.
-  - **Clauden osuus:** kirjoitti koodin (HTML, CSS, JavaScript) ja kommentit, testasi toiminnot selaimessa, otti kuvakaappaukset ja teki tämän README:n rungon. Itsearvioinnin kirjoitan itse.
+  - **Clauden osuus:** kirjoitti koodin (HTML, CSS, JavaScript) ja kommentit, testasi toiminnot selaimessa, otti kuvakaappaukset ja teki tämän README:n rungon. Itsearvioinnin vastaukset ovat omiani: Claude esitti kysymykset, korjasi kirjoitusvirheet ja jäsenteli vastaukset; kohdan "Mistä haluaisin oppia lisää" aiheet valitsin Clauden ehdottamasta listasta.
 
 ## Lisenssi
 
